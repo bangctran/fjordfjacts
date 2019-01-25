@@ -3,9 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <title>Fjord Fjacts</title>
+    <!-- Materialize library-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </head>
+
 <body>
+<header>
+
+    <!-- Materialize navigation bar -->
+    <nav>
+        <div class="nav-wrapper indigo lighten-2">
+            <a href="#" class="brand-logo center">Fjord Fjacts</a>
+            <ul id="nav-mobile" class="left hide-on-med-and-down">
+            </ul>
+        </div>
+    </nav>
+</header>
+
+<main>
+    <!-- Parallax scroller from Material -->
+    <div class="parallax-container">
+        <div class="parallax"><img src="images/fjordhero1.jpg"></div>
+    </div>
+    <div class="section white">
+        <div class="row container">
+            <h2 class="header">Parallax</h2>
+            <p class="grey-text text-darken-3 lighten-3">Parallax is an effect where the background content or image in this case, is moved at a different speed than the foreground content while scrolling.</p>
+        </div>
+    </div>
+    <div class="parallax-container">
+        <div class="parallax"><img src="images/fjordhero1.jpg"></div>
+    </div>
+</main>
+
 <p>Fjacts about Fjords</p>
-<p>This is tje wonderful world of fjords.</p>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var elems = document.querySelectorAll('.parallax');
+        var instances = M.Parallax.init(elems, options);
+    });
+</script>
+
 </body>
 </html>
