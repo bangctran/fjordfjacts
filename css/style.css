@@ -1,14 +1,15 @@
 /* Custom Stylesheet */
-/**
- * Use this file to override Materialize files so you can update
- * the core Materialize files in the future
- *
- * Made By MaterializeCSS.com
+/* Stylesheet from Materialize – Responsive @Media Rules
  */
+
+/* Display Google Font for headers*/
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Noto Serif SC', serif;
+}
 
 nav ul a,
 nav .brand-logo {
-  color: #444;
+  color: #FFFFF;
 }
 
 p {
@@ -18,7 +19,7 @@ p {
 .sidenav-trigger {
   color: #26a69a;
 }
-
+/* Parallax CSS Containers */
 .parallax-container {
   min-height: 380px;
   line-height: 0;
@@ -29,6 +30,7 @@ p {
     width: 100%;
   }
 
+  /* Media rules for responsiveness */
 @media only screen and (max-width : 992px) {
   .parallax-container .section {
     position: absolute;
