@@ -63,6 +63,223 @@
 
 
 
+
+
+    <!-- YouTube Section -->
+
+    <div id="para4" class="parallax-container">
+    <div class="parallax"><img src="https://images.pexels.com/photos/959323/pexels-photo-959323.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" alt="Snow"></div>
+        <h4 style="font-family: Didot"> Vids by the Occasion </h4>
+        <div>
+            <div id="search-container2" class="row">
+                <!--<div class="s12 m4 l4" style="z-index:1000 !important">
+                    <iframe id="myIframe" width="360" height="215" src="" frameborder="0" allow="accelerometer; encrypted-media; picture-in-picture" ></iframe>
+                </div>-->
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <script>
+        $(document).ready(function(){
+            $('.parallax').parallax();
+            $('.collapsible').collapsible();
+        });
+    </script>
+
+    <script>
+        var currSeason;
+        var currOccasion;
+
+        $(document).ready(function() {
+            //UsePexelsAPI();
+            initialSetup();
+
+        });
+
+        function runQuery(){
+            $('#ready').addClass("disabled");
+            // Loads the JavaScript client library and invokes `start` afterwards.
+            gapi.load('client', {
+                callback: function() {
+                    // Handle gapi.client initialization.
+                    //initGapiClient();
+                    UseGoogleAPI();
+                },
+                onerror: function() {
+                    // Handle loading error.
+                    alert('gapi.client failed to load!');
+                },
+                timeout: 5000, // 5 seconds.
+                ontimeout: function() {
+                    // Handle timeout.
+                    alert('gapi.client could not load in a timely manner!');}
+
+            });
+        }
+        function addActive(id){
+            $('#summer').removeClass("active").removeClass("thisSeason");
+            $('#winter').removeClass("active").removeClass("thisSeason");
+            $('#spring').removeClass("active").removeClass("thisSeason");
+            $('#fall').removeClass("active").removeClass("thisSeason");
+            $(id).addClass("active");
+            $(id).addClass("thisSeason");
+            currSeason = id;
+        }
+        function addActive2(id){
+            $('#anniv').removeClass("active").removeClass("thisOcc");
+            $('#date').removeClass("active").removeClass("thisOcc");
+            $('#vaca').removeClass("active").removeClass("thisOcc");
+            $('#rand').removeClass("active").removeClass("thisOcc");
+            $(id).addClass("active");
+            $(id).addClass("thisOcc");
+            currOccasion = id;
+        }
+        function initialSetup(){
+            $('#para3').hide();
+            $('#para4').hide();
+        }
+
+        function UseGoogleAPI() {
+            // Initializes the client with the API key YouTube api SIMPLE ACCESS
+            gapi.client.init({
+                'apiKey': 'AIzaSyCTLKkxRSpYq6AVFsaWnZO6X8rTWZ0Y19A',
+                'discoveryDocs': ['https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest']
+            }).then(function() {
+                // Executes an API request, and returns a Promise.
+                var q = currSeason;
+                var b = currOccasion;
+                console.log("current query: "+q);
+                var q2 = $('.thisOcc').val();
+                var seasons = ['#winter','#summer','#spring','#fall'];
+                var winterQuery = ['winter travel', 'winter trip', 'winter vacation vlog'];
+                var summerQuery = ['summer travel', 'summer trip', 'summer vacation vlog'];
+                var springQuery = ['spring travel', 'spring trip', 'spring vacation vlog'];
+                var fallQuery = ['fall travel', 'fall trip', 'fall vacation vlog'];
+
+
+                var i = 0;
+                var i2 = 0;
+                var index = 0;
+
+                if (q === seasons[0]) {
+                    console.log("winter query: "+q);
+                    processQueries(winterQuery,'#search-container');
+                    occasionQuery(b);
+
+                }
+                else if (q === seasons[1]){
+                    console.log("summer query: "+q);
+                    processQueries(summerQuery,'#search-container');
+                    occasionQuery(b);
+                }
+                else if (q === seasons[2]){
+                    console.log("spring query: "+q);
+                    processQueries(springQuery,'#search-container');
+                    occasionQuery(b);
+                }
+                else{
+                    console.log("fall query: "+q);
+                    processQueries(fallQuery,'#search-container');
+                    occasionQuery(b);
+                }
+                i2 += 1;
+
+
+
+            })
+        }
+        function occasionQuery(b){
+            //Here maybe we can filter for most recent, most liked, most viewed?????
+            var annivQuery = ['anniversary date', 'anniversary trip', 'anniversary travel'];
+            var dateQuery = ['date night abroad','travel date night','first date'];
+            var vacaQuery = ['vacation vlog','vacation travel','vacation'];
+            var anyQuery = ['places to travel','travel abroad','travel vlog'];
+
+            if (b === '#anniv'){
+                processQueries(annivQuery,'#search-container2');
+            }
+            else if (b === '#date'){
+                processQueries(dateQuery,'#search-container2');
+            }
+            else if (b === '#vaca'){
+                processQueries(vacaQuery,'#search-container2');
+            }
+            else{
+                // rand
+                processQueries(anyQuery,'#search-container2');
+            }
+        }
+        function processQueries(queries,container){
+            var index = 0;
+            var idLoop = 0;
+            while (index < queries.length) {
+                var request = gapi.client.youtube.search.list({
+                    q: queries[index],
+                    maxResults: 2,
+                    part: 'snippet'
+                });
+
+                request.execute(function (response) {
+                    var str = JSON.stringify(response.result);
+                    //$('#search-container').html('<pre>' + str + '</pre>');
+
+                    const playListItems = response.result.items;
+                    console.log(playListItems);
+                    // check to see that there are items
+                    if (playListItems) {
+                        //var idLoop = 0;
+
+                        // loop through videos to append output
+                        playListItems.forEach(function (item) {
+                            var videoId = item.id.videoId;
+                            console.log('video id: ' + videoId);
+                            var url = "https://www.youtube.com/embed/" + videoId;
+                            $(container).append('<div class="col s12 m4 l4"><iframe id="myIframe" width="360" height="215" src="hgf" frameborder="0" allow="accelerometer; encrypted-media; " ></iframe></div>');
+                            setTimeout(3000);
+                            document.getElementById("myIframe").src = url;
+                            document.getElementById("myIframe").id = "id" + idLoop;
+
+                            idLoop = idLoop + 1;
+
+                        });
+                        $('#para3').show();
+                        $('#para4').show();
+
+                    }
+                    else {
+                        $('#search-container').html("No Fjords to Display");
+                    }
+                });
+                index += 1;
+            }
+        }
+        function UsePexelsAPI(){
+
+            //Require Wrapper Library
+            const PexelsAPI = require('pexels-api-wrapper');
+
+            //Create Client instance by passing in API key
+            var pexelsClient = new PexelsAPI("563492ad6f91700001000001402af010d6064adabbb53fcea3831997");
+
+            //Search API
+            pexelsClient.search("food", 10, 1)
+                .then(function(result){
+                    console.log('pexels '+ result);
+                }).
+            catch(function(e){
+                console.err(e);
+            });
+        }
+
+
+    </script>
+
+
+
+
 </main>
 </body>
 
