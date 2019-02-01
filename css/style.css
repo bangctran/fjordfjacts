@@ -28,6 +28,7 @@ p {
 }
   .parallax-container .section {
     width: 100%;
+    top:500;
   }
 
   /* Media rules for responsiveness */
