@@ -70,7 +70,7 @@
     <div class="section white">
         <div class="row container">
             <h2 class="header">Fjord Fjilms</h2>
-            <p class="grey-text text-darken-3 lighten-3">Fjords are beautiful. Below you can see examples of fjords found in Alaska and Norway. We chose Alaska and Norway because Fjords are the most common in those areas.</p>
+            <p class="grey-text text-darken-3 lighten-3">Fjords are beautiful. Below you can see examples of fjords found in Alaska and Norway. We chose Alaska, Canada, and Norway because Fjords are the most common in those areas.</p>
         </div>
     </div>
 
@@ -229,7 +229,7 @@
                             var videoId = item.id.videoId;
                             console.log('video id: ' + videoId);
                             var url = "https://www.youtube.com/embed/" + videoId;
-                            $(container).append('<div class="col s12 m6 l4" text-style="padding:10px;"><iframe id="myIframe" width="360" height="215" src="hgf" frameborder="0" allow="accelerometer; encrypted-media; " ></iframe></div>');
+                            $(container).append('<div class="col s12 m6 l4"><iframe id="myIframe" width="360" height="215" src="hgf" frameborder="0" allow="accelerometer; encrypted-media;" style="padding:1px;border:1px solid black;"></iframe></div>');
                             setTimeout(3000);
                             document.getElementById("myIframe").src = url;
                             document.getElementById("myIframe").id = "id" + idLoop;
