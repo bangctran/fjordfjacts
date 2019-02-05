@@ -229,7 +229,7 @@
                             var videoId = item.id.videoId;
                             console.log('video id: ' + videoId);
                             var url = "https://www.youtube.com/embed/" + videoId;
-                            $(container).append('<div class="col s12 m6 l4"><iframe id="myIframe" width="360" height="215" src="hgf" frameborder="0" allow="accelerometer; encrypted-media;" style="padding:1px;border:1px solid black;"></iframe></div>');
+                            $(container).append('<div class="col s12 m6 l4" style="padding:15px"><iframe id="myIframe" width="360" height="215" src="hgf" frameborder="0" allow="accelerometer; encrypted-media;" style="margin: 0 1em 0 1em;"></iframe></div>');
                             setTimeout(3000);
                             document.getElementById("myIframe").src = url;
                             document.getElementById("myIframe").id = "id" + idLoop;
