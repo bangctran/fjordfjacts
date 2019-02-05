@@ -48,7 +48,7 @@
     </nav>
 </header>
 
-<main>
+<div>
     <!-- Parallax scroller from Material -->
     <div class="parallax-container">
         <div class="parallax"><img alt="Fjord" style src="images/fjordhero1.jpg"></div>
@@ -57,6 +57,9 @@
         <div class="row container">
             <h2 class="header">What is a fjord?</h2>
             <p class="grey-text text-darken-3 lighten-3">Geologically, a fjord or fiord is a long, narrow inlet with steep sides or cliffs, created by a glacier. There are many fjords on the coasts of Alaska, Antarctica, British Columbia, Chile, Greenland, the Faroe Islands, Iceland, Kamchatka, the Kerguelen Islands, New Zealand, Norway, Novaya Zemlya, Labrador, Nunavut, Newfoundland, Quebec, Scotland, South Georgia Island, and Washington state.</p>
+            <h3 class="header">Fjormation</h3>
+            <p class="grey-text text-darken-3 lighten-3">A true fjord is formed when a glacier cuts a U-shaped valley by ice segregation and abrasion of the surrounding bedrock. According to the standard model, glaciers formed in pre-glacial valleys with a gently sloping valley floor. The work of the glacier then left an overdeepened U-shaped valley that ends abruptly at a valley or trough end. Such valleys are fjords when flooded by the ocean.</p>
+            <p class="grey-text text-darken-3 lighten-3">(Source: Wikipedia)</p>
         </div>
     </div>
     <div class="parallax-container">
@@ -67,7 +70,7 @@
     <div class="section white">
         <div class="row container">
             <h2 class="header">Fjord Fjilms</h2>
-            <p class="grey-text text-darken-3 lighten-3">Geologically, a fjord or fiord is a long, narrow inlet with steep sides or cliffs, created by a glacier. There are many fjords on the coasts of Alaska, Antarctica, British Columbia, Chile, Greenland, the Faroe Islands, Iceland, Kamchatka, the Kerguelen Islands, New Zealand, Norway, Novaya Zemlya, Labrador, Nunavut, Newfoundland, Quebec, Scotland, South Georgia Island, and Washington state. Below you can see examples of fjords found in Alaska and Norway.</p>
+            <p class="grey-text text-darken-3 lighten-3">Fjords are beautiful. Below you can see examples of fjords found in Alaska and Norway. We chose Alaska and Norway because Fjords are the most common in those areas.</p>
         </div>
     </div>
 
@@ -79,17 +82,24 @@
     <script src="js/init.js"></script>
 
     <!-- parallax 3 -->
-    <div id="para3" class="parallax-container">
-        <div class="parallax"><img src="https://images.pexels.com/photos/959323/pexels-photo-959323.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" alt="Snow"></div>
-        <div id="search-container" class="row"></div>
-    </div>
-
+    <!-- buttons for user input-->
+    <div class="row container">
+        <center>
     <button onclick="setValue('alaska')" class="waves-effect waves-light btn-large" type="submit" name="action" id="alaska">
         Alaska
     </button>
     <button onclick="setValue('norway')" class="waves-effect waves-light btn-large" type="submit" name="action" id="norway">
         Norway
     </button>
+        </center>
+    </div>
+
+    <div id="para3" class="parallax-container">
+        <div class="parallax"><img src="images/SearchContainerImage.jpg" alt="Fjord"></div>
+        <div id="search-container" class="row"></div>
+    </div>
+
+
 
 
 
@@ -159,8 +169,7 @@
                 var canadaQuery = ['canada fjords', 'canadian fjords'];
                 var norwayQuery = ['norway fjords'];
                 var alaskaQuery = ['alaska fjords'];
-                //var springQuery = ['spring travel', 'spring trip', 'spring vacation vlog'];
-                //var fallQuery = ['fall travel', 'fall trip', 'fall vacation vlog'];
+
 
 
                 var i = 0;
@@ -200,7 +209,7 @@
             while (index < queries.length) {
                 var request = gapi.client.youtube.search.list({
                     q: queries[index],
-                    maxResults: 6,
+                    maxResults: 9,
                     part: 'snippet'
                 });
 
@@ -219,7 +228,7 @@
                             var videoId = item.id.videoId;
                             console.log('video id: ' + videoId);
                             var url = "https://www.youtube.com/embed/" + videoId;
-                            $(container).append('<div class="col s12 m4 l4"><iframe id="myIframe" width="360" height="215" src="hgf" frameborder="0" allow="accelerometer; encrypted-media; " ></iframe></div>');
+                            $(container).append('<div class="col s12 m6 l4"><iframe id="myIframe" width="360" height="215" src="hgf" frameborder="0" allow="accelerometer; encrypted-media; " ></iframe></div>');
                             setTimeout(3000);
                             document.getElementById("myIframe").src = url;
                             document.getElementById("myIframe").id = "id" + idLoop;
